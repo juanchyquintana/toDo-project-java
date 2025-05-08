@@ -1,5 +1,6 @@
 package com.databaseproject.cinedev.models.base;
 
+import com.databaseproject.cinedev.enums.RoleUser;
 import com.databaseproject.cinedev.models.task.Task;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,16 +34,17 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private Set<UserRoles> userRoles = new HashSet<>();
+    private RoleUser userRole;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Set<Task> tasks = new HashSet<>();
 
-    public User(String fullName, String email, String password) {
+    public User(String fullName, String email, String password, RoleUser userRole) {
         this.fullName = fullName;
         this.email = email;
         this.password = hashPassword(password);
+        this.userRole = userRole;
     }
 
     public User(String email, String password) {
