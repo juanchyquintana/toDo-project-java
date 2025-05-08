@@ -1,12 +1,12 @@
 package com.databaseproject.cinedev.stages;
 
-import com.databaseproject.cinedev.models.base.User;
-import com.databaseproject.cinedev.models.task.Category;
-import com.databaseproject.cinedev.models.task.Task;
-import com.databaseproject.cinedev.services.tasks.task.ITaskService;
+import com.databaseproject.cinedev.domain.models.base.User;
+import com.databaseproject.cinedev.domain.models.task.Category;
+import com.databaseproject.cinedev.domain.models.task.Task;
+import com.databaseproject.cinedev.application.services.task.ITaskService;
 import com.databaseproject.cinedev.stages.components.forms.CategoryForm;
 import com.databaseproject.cinedev.stages.components.forms.TaskForm;
-import com.databaseproject.cinedev.utils.Utils;
+import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
