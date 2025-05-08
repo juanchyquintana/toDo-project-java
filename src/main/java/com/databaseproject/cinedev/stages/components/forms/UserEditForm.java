@@ -4,7 +4,6 @@ import com.databaseproject.cinedev.CinedevApplication;
 import com.databaseproject.cinedev.models.base.Roles;
 import com.databaseproject.cinedev.models.base.User;
 import com.databaseproject.cinedev.models.base.UserRoles;
-import com.databaseproject.cinedev.models.base.compositeKey.UserRoleId;
 import com.databaseproject.cinedev.services.base.roles.RoleService;
 import com.databaseproject.cinedev.services.base.user.UserService;
 import com.databaseproject.cinedev.utils.Utils;
