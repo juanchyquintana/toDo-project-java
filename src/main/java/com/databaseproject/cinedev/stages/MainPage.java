@@ -1,10 +1,10 @@
 package com.databaseproject.cinedev.stages;
 
-import com.databaseproject.cinedev.models.base.User;
+import com.databaseproject.cinedev.domain.models.base.User;
 import com.databaseproject.cinedev.models.movie.Movie;
 import com.databaseproject.cinedev.stages.components.NavBar;
 import com.databaseproject.cinedev.stages.components.movies.MovieDetails;
-import com.databaseproject.cinedev.utils.Utils;
+import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

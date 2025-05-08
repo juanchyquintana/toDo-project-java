@@ -1,15 +1,15 @@
 package com.databaseproject.cinedev.stages.components;
 
 import com.databaseproject.cinedev.CinedevApplication;
-import com.databaseproject.cinedev.models.base.User;
+import com.databaseproject.cinedev.domain.models.base.User;
 import com.databaseproject.cinedev.models.movie.Ticket;
 import com.databaseproject.cinedev.services.base.userRole.UserRoleService;
-import com.databaseproject.cinedev.services.tasks.task.ITaskService;
+import com.databaseproject.cinedev.application.services.task.ITaskService;
 import com.databaseproject.cinedev.stages.LoginPage;
 import com.databaseproject.cinedev.stages.TaskPage;
 import com.databaseproject.cinedev.stages.UserPage;
 import com.databaseproject.cinedev.stages.components.cart.CheckoutView;
-import com.databaseproject.cinedev.utils.Utils;
+import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

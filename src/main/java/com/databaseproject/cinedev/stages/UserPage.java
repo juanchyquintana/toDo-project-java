@@ -1,11 +1,11 @@
 package com.databaseproject.cinedev.stages;
 
 import com.databaseproject.cinedev.CinedevApplication;
-import com.databaseproject.cinedev.models.base.User;
-import com.databaseproject.cinedev.services.base.user.UserService;
-import com.databaseproject.cinedev.services.tasks.category.CategoryService;
+import com.databaseproject.cinedev.domain.models.base.User;
+import com.databaseproject.cinedev.application.services.user.UserService;
+import com.databaseproject.cinedev.application.services.category.CategoryService;
 import com.databaseproject.cinedev.stages.components.forms.UserEditForm;
-import com.databaseproject.cinedev.utils.Utils;
+import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

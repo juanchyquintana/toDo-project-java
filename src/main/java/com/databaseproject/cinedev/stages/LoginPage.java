@@ -1,9 +1,9 @@
 package com.databaseproject.cinedev.stages;
 
 import com.databaseproject.cinedev.CinedevApplication;
-import com.databaseproject.cinedev.models.base.User;
-import com.databaseproject.cinedev.services.base.user.UserService;
-import com.databaseproject.cinedev.utils.Utils;
+import com.databaseproject.cinedev.domain.models.base.User;
+import com.databaseproject.cinedev.application.services.user.UserService;
+import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
