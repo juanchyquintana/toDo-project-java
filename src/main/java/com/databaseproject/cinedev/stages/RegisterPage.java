@@ -1,11 +1,9 @@
 package com.databaseproject.cinedev.stages;
 
 import com.databaseproject.cinedev.CinedevApplication;
-import com.databaseproject.cinedev.domain.models.base.Roles;
+import com.databaseproject.cinedev.domain.enums.RoleUser;
 import com.databaseproject.cinedev.domain.models.base.User;
-import com.databaseproject.cinedev.services.base.roles.RoleService;
 import com.databaseproject.cinedev.application.services.user.UserService;
-import com.databaseproject.cinedev.services.base.userRole.UserRoleService;
 import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,13 +18,9 @@ import javafx.stage.Stage;
 
 public class RegisterPage implements IWindowScene {
     UserService userService;
-    UserRoleService userRoleService;
-    RoleService roleService;
 
     public RegisterPage() {
         this.userService = CinedevApplication.getSpringContext().getBean(UserService.class);
-        this.userRoleService = CinedevApplication.getSpringContext().getBean(UserRoleService.class);
-        this.roleService = CinedevApplication.getSpringContext().getBean(RoleService.class);
     }
 
     @Override
@@ -162,16 +156,9 @@ public class RegisterPage implements IWindowScene {
 
             cleanFields(fullNameField, emailField, passwordField, repeatPasswordField);
 
-            Roles defaultRole = roleService.findByName("USERS");
-            if (defaultRole == null) {
-                Utils.sendMessage("Role USER not found. Contact administrator.", Alert.AlertType.ERROR);
-                return;
-            }
 
-            User user = new User(name, email, password);
+            User user = new User(name, email, password, RoleUser.USERS);
             userService.saveUser(user);
-
-            userRoleService.assignRoleToUser(user, defaultRole);
 
             Utils.sendMessage("¡Successfuly Register! Welcome, " + user.getFullName() + "! Now you can log in with your account.", Alert.AlertType.INFORMATION);
             Utils.loadWindowsToShow(new LoginPage(), primaryStage);

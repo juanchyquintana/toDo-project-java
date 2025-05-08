@@ -34,7 +34,7 @@ public class LoginPage implements IWindowScene {
         return new Scene(root, 600, 600);
     }
 
-    private StackPane loginForm(Stage primaryStage) {
+    private void loginForm(Stage primaryStage) {
         Rectangle rectangle = new Rectangle(250, 250);
         rectangle.setFill(Color.WHITE);
         rectangle.setStroke(Color.BLACK);
@@ -109,7 +109,6 @@ public class LoginPage implements IWindowScene {
 
                 Utils.sendMessage("Login successful! Welcome.", Alert.AlertType.INFORMATION);
                 System.out.println("User logged in: " + existingUser.getFullName());
-                existingUser.getUserRoles().forEach(r -> System.out.println("Role: " + r.getRoles().getName()));
 
                 Utils.loadWindowsToShow(new MainPage(existingUser), primaryStage);
             } else {
@@ -125,11 +124,5 @@ public class LoginPage implements IWindowScene {
             Utils.loadWindowsToShow(new RegisterPage(), primaryStage);
         });
 
-        VBox form = new VBox(10, titleBox, emailLabel, emailField, passwordLabel, passwordField, button, registerLabel);
-        form.setPadding(new Insets(20));
-        form.setMaxWidth(360);
-        form.setFillWidth(true);
-
-        return new StackPane(form);
     }
 }
