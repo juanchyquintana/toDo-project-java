@@ -4,7 +4,6 @@ import com.databaseproject.cinedev.CinedevApplication;
 import com.databaseproject.cinedev.domain.models.base.User;
 import com.databaseproject.cinedev.application.services.user.UserService;
 import com.databaseproject.cinedev.application.services.category.CategoryService;
-import com.databaseproject.cinedev.stages.components.forms.UserEditForm;
 import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -69,14 +68,14 @@ public class UserPage implements IWindowScene {
         Button buttonAddUser = Utils.createButton("Add User", "#4CAF50");
         TableView<User> table = createTableTasks(primaryStage);
         buttonAddUser.setOnAction(e -> {
-            User newUser = new User();
-            UserEditForm showModalTask = new UserEditForm(newUser, () -> table.setItems(getUsers()));
-            showModalTask.showFormModal(primaryStage);
+//            User newUser = new User();
+//            UserEditForm showModalTask = new UserEditForm(newUser, () -> table.setItems(getUsers()));
+//            showModalTask.showFormModal(primaryStage);
         });
 
         Button returnToMainPage = Utils.createButton("Back to Main", "#000000");
         returnToMainPage.setOnAction(e -> {
-            Utils.loadWindowsToShow(new MainPage(user), primaryStage);
+            //Utils.loadWindowsToShow(new MainPage(user), primaryStage);
         });
 
         HBox buttons = new HBox(25, buttonAddUser, returnToMainPage);
@@ -110,14 +109,11 @@ public class UserPage implements IWindowScene {
         }
 
         TableColumn<User, String> rolesCol = new TableColumn<>("Roles");
-        rolesCol.setCellValueFactory(cellData -> {
-            User user = cellData.getValue();
-            String roles = user.getUserRoles().stream()
-                    .map(ur -> ur.getRoles().getName())
-                    .reduce((r1, r2) -> r1 + ", " + r2)
-                    .orElse("No Role");
-            return new ReadOnlyStringWrapper(roles);
-        });
+//        rolesCol.setCellValueFactory(cellData -> {
+//            User user = cellData.getValue();
+//            User roles = user.getUserRole();
+//            return new ReadOnlyStringWrapper(roles);
+//        });
         rolesCol.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
         table.getColumns().add(rolesCol);
 
@@ -137,11 +133,11 @@ public class UserPage implements IWindowScene {
                 String formattedNow = Utils.formatDate(now);
 
                 btnEdit.setOnAction(e -> {
-                    User user = getTableView().getItems().get(getIndex());UserEditForm editForm = new UserEditForm(user, () -> {
-                        table.setItems(getUsers());
-                        table.refresh();
-                    });
-                    editForm.showFormModal(primaryStage);
+//                    User user = getTableView().getItems().get(getIndex());UserEditForm editForm = new UserEditForm(user, () -> {
+//                        table.setItems(getUsers());
+//                        table.refresh();
+//                    });
+//                    editForm.showFormModal(primaryStage);
                 });
 
                 btnDelete.setOnAction(e -> {

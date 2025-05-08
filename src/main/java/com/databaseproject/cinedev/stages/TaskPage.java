@@ -97,7 +97,7 @@ public class TaskPage implements IWindowScene {
 
         Button returnToMainPage = Utils.createButton("Back to Main", "#000000");
         returnToMainPage.setOnAction(e -> {
-            Utils.loadWindowsToShow(new MainPage(user), primaryStage);
+            //Utils.loadWindowsToShow(new MainPage(user), primaryStage);
         });
 
         HBox buttons = new HBox(25, buttonAddTask, buttonAddCategory, buttonEndedTask, buttonBackAllTask, returnToMainPage);

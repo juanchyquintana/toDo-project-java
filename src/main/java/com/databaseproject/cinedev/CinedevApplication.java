@@ -1,9 +1,9 @@
 package com.databaseproject.cinedev;
 
-import com.databaseproject.cinedev.stages.LoginPage;
+import com.databaseproject.cinedev.presentation.PathViews;
+import com.databaseproject.cinedev.presentation.ViewSwitcher;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,12 +36,7 @@ public class CinedevApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		LoginPage login = new LoginPage();
-		Scene scene = login.showWindow(primaryStage);
-
-		primaryStage.setTitle("CineDev");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		ViewSwitcher.switchTo(primaryStage, PathViews.LOGIN.getPathViews(), "Login", 600, 600);
 	}
 
 	@Override

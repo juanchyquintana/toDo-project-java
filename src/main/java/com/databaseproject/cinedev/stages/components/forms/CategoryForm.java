@@ -4,7 +4,6 @@ import com.databaseproject.cinedev.CinedevApplication;
 import com.databaseproject.cinedev.domain.models.base.User;
 import com.databaseproject.cinedev.domain.models.task.Category;
 import com.databaseproject.cinedev.application.services.user.UserService;
-import com.databaseproject.cinedev.services.base.userRole.UserRoleService;
 import com.databaseproject.cinedev.application.services.category.CategoryService;
 import com.databaseproject.cinedev.application.utils.Utils;
 import javafx.geometry.Insets;
@@ -27,7 +26,6 @@ public class CategoryForm {
     private Category categoryToUpdate;
 
     private final CategoryService categoryService;
-    private final UserRoleService userRoleService;
     private final UserService userService;
 
     private final TextField nameField = new TextField();
@@ -39,7 +37,6 @@ public class CategoryForm {
     public CategoryForm(User user, Category category) {
         this.categoryService = CinedevApplication.getSpringContext().getBean(CategoryService.class);
         this.userService = CinedevApplication.getSpringContext().getBean(UserService.class);
-        this.userRoleService = CinedevApplication.getSpringContext().getBean(UserRoleService.class);
 
         this.user = userService.getUserWithRolesById(user.getId());
         this.categoryToUpdate = category;
@@ -124,66 +121,66 @@ public class CategoryForm {
         categoryView.setStyle("-fx-background-color: #f9f9f9; -fx-border-color: #ddd; -fx-border-width: 1px 0 0 0;");
 
         List<Category> categoriesByUser;
-        boolean isAdmin = userRoleService.isAdmin(user.getId());
-        if (isAdmin) {
-            categoriesByUser = categoryService.getAllCategories();
-        } else {
-            categoriesByUser = categoryService.getAllCategories().stream().filter(category ->
-                            !category.isDefault() && category.getUserAdminId() != null
-                            && category.getUserAdminId().getId().equals(user.getId()))
-                    .collect(Collectors.toList());
-        }
+//        boolean isAdmin = userRoleService.isAdmin(user.getId());
+//        if (isAdmin) {
+//            categoriesByUser = categoryService.getAllCategories();
+//        } else {
+//            categoriesByUser = categoryService.getAllCategories().stream().filter(category ->
+//                            !category.isDefault() && category.getUserAdminId() != null
+//                            && category.getUserAdminId().getId().equals(user.getId()))
+//                    .collect(Collectors.toList());
+//        }
 
-        for (Category category : categoriesByUser) {
-            HBox item = new HBox(10);
-            item.setSpacing(10);
-            item.setAlignment(Pos.CENTER_LEFT);
-            item.setPadding(new Insets(5, 0, 5, 0));
-
-            Label nameItem = new Label(category.getName().toUpperCase());
-            nameItem.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
-            HBox.setHgrow(nameItem, Priority.ALWAYS);
-            nameItem.setMaxWidth(Double.MAX_VALUE);
-
-            nameItem.setStyle("-fx-font-weight: bold;");
-            HBox.setHgrow(nameItem, Priority.ALWAYS);
-
-            Button deleteButton = new Button("", Utils.typeOfIcon("fas-trash", "red"));
-            deleteButton.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
-            deleteButton.setDisable(category.isDefault() && !isAdmin);
-
-            deleteButton.setOnAction(e -> {
-                if (categoryService.hasTasksAssociated(category)) {
-                    Utils.sendMessage("Cannot delete category. It has tasks associated.", Alert.AlertType.WARNING);
-                    return;
-                }
-
-                categoryService.removeCustomCategory(category);
-                categoryView.getChildren().remove(item);
-
-                Utils.sendMessage("Category " + category.getName().toUpperCase() + " deleted.", Alert.AlertType.INFORMATION);
-            });
-
-            Button updateButton = new Button("", Utils.typeOfIcon("fas-pencil-alt", "green"));
-            updateButton.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
-            updateButton.setDisable(category.isDefault() && !isAdmin);
-
-            updateButton.setOnAction(e -> {
-                nameField.setText(category.getName());
-                statusCombo.setValue(category.getState());
-                defaultCheck.setSelected(category.isDefault());
-                descriptionArea.setText(category.getDescription());
-                if (category.getCreatedAt() == null) {
-                    category.setCreatedAt(LocalDateTime.now());
-                }
-
-                this.categoryToUpdate = category;
-                saveButton.setText("Update Category");
-            });
-
-            item.getChildren().addAll(nameItem, updateButton, deleteButton);
-            categoryView.getChildren().add(item);
-        }
+//        for (Category category : categoriesByUser) {
+//            HBox item = new HBox(10);
+//            item.setSpacing(10);
+//            item.setAlignment(Pos.CENTER_LEFT);
+//            item.setPadding(new Insets(5, 0, 5, 0));
+//
+//            Label nameItem = new Label(category.getName().toUpperCase());
+//            nameItem.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
+//            HBox.setHgrow(nameItem, Priority.ALWAYS);
+//            nameItem.setMaxWidth(Double.MAX_VALUE);
+//
+//            nameItem.setStyle("-fx-font-weight: bold;");
+//            HBox.setHgrow(nameItem, Priority.ALWAYS);
+//
+//            Button deleteButton = new Button("", Utils.typeOfIcon("fas-trash", "red"));
+//            deleteButton.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+//            deleteButton.setDisable(category.isDefault() && !isAdmin);
+//
+//            deleteButton.setOnAction(e -> {
+//                if (categoryService.hasTasksAssociated(category)) {
+//                    Utils.sendMessage("Cannot delete category. It has tasks associated.", Alert.AlertType.WARNING);
+//                    return;
+//                }
+//
+//                categoryService.removeCustomCategory(category);
+//                categoryView.getChildren().remove(item);
+//
+//                Utils.sendMessage("Category " + category.getName().toUpperCase() + " deleted.", Alert.AlertType.INFORMATION);
+//            });
+//
+//            Button updateButton = new Button("", Utils.typeOfIcon("fas-pencil-alt", "green"));
+//            updateButton.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+//            updateButton.setDisable(category.isDefault() && !isAdmin);
+//
+//            updateButton.setOnAction(e -> {
+//                nameField.setText(category.getName());
+//                statusCombo.setValue(category.getState());
+//                defaultCheck.setSelected(category.isDefault());
+//                descriptionArea.setText(category.getDescription());
+//                if (category.getCreatedAt() == null) {
+//                    category.setCreatedAt(LocalDateTime.now());
+//                }
+//
+//                this.categoryToUpdate = category;
+//                saveButton.setText("Update Category");
+//            });
+//
+//            item.getChildren().addAll(nameItem, updateButton, deleteButton);
+//            categoryView.getChildren().add(item);
+//        }
 
         ScrollPane scrollPane = new ScrollPane(categoryView);
         scrollPane.setFitToWidth(true);
@@ -199,9 +196,9 @@ public class CategoryForm {
                 statusLabel, statusCombo
         );
 
-        if (userRoleService.isAdmin(user.getId())) {
-            view.getChildren().addAll(defaultLabel, defaultCheck);
-        }
+//        if (userRoleService.isAdmin(user.getId())) {
+//            view.getChildren().addAll(defaultLabel, defaultCheck);
+//        }
 
         view.getChildren().addAll(
                 descriptionLabel, descriptionArea,
