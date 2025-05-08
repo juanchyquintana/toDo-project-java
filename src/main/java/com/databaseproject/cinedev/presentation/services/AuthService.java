@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginPageService {
+public class AuthService {
 
     @Autowired
     private final UserService userService;
 
-    public LoginPageService(UserService userService) {
+    public AuthService(UserService userService) {
         this.userService = userService;
     }
 
@@ -30,5 +30,14 @@ public class LoginPageService {
         }
 
         return null;
+    }
+
+    public boolean register(User user) {
+        if (userService.existsByEmail(user.getEmail())) {
+            return false;
+        }
+
+        userService.saveUser(user);
+        return true;
     }
 }

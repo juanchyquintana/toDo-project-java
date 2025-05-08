@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.databaseproject.cinedev.presentation.controller.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.databaseproject.cinedev.presentation.controller.LoginController"
+           prefHeight="400.0" prefWidth="600.0">
 
     <VBox alignment="TOP_CENTER" spacing="10" prefWidth="600.0" prefHeight="600.0">
         <StackPane fx:id="logoPane"/>
@@ -17,13 +14,16 @@
         <StackPane>
             <VBox spacing="10" alignment="CENTER" maxWidth="360" padding="20">
                 <HBox alignment="CENTER">
-                    <Label text="LOG IN" style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: white; -fx-font-family: 'Arial';"/>
+                    <Label text="LOG IN"
+                           style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: white; -fx-font-family: 'Arial';"/>
                 </HBox>
 
-                <Label text="Email:" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: white; -fx-font-family: 'Arial';"/>
+                <Label text="Email:"
+                       style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: white; -fx-font-family: 'Arial';"/>
                 <TextField fx:id="emailField" promptText="Ej: hola@gmail.com" maxWidth="Infinity"/>
 
-                <Label text="Password:" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: white; -fx-font-family: 'Arial';"/>
+                <Label text="Password:"
+                       style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: white; -fx-font-family: 'Arial';"/>
                 <PasswordField fx:id="passwordField" promptText="**********" maxWidth="Infinity"/>
 
                 <Button fx:id="loginButton" text="Log In" maxWidth="Infinity"

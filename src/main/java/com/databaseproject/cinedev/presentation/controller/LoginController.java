@@ -1,12 +1,11 @@
 package com.databaseproject.cinedev.presentation.controller;
 
 import com.databaseproject.cinedev.CinedevApplication;
-import com.databaseproject.cinedev.application.services.user.UserService;
 import com.databaseproject.cinedev.application.utils.Utils;
 import com.databaseproject.cinedev.domain.models.base.User;
 import com.databaseproject.cinedev.presentation.PathViews;
 import com.databaseproject.cinedev.presentation.ViewSwitcher;
-import com.databaseproject.cinedev.presentation.services.LoginPageService;
+import com.databaseproject.cinedev.presentation.services.AuthService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
@@ -29,9 +28,8 @@ public class LoginController {
     @FXML
     private Label registerLabel;
 
-    private final UserService userService = CinedevApplication.getSpringContext().getBean(UserService.class);
+    private final AuthService authService = CinedevApplication.getSpringContext().getBean(AuthService.class);
 
-    private LoginPageService loginPageService;
 
     @FXML
     private void initialize() {
@@ -55,7 +53,7 @@ public class LoginController {
                 return;
             }
 
-            User existingUser = loginPageService.login(email, password);
+            User existingUser = authService.login(email, password);
             if (existingUser != null) {
                 Stage taskView = (Stage) loginButton.getScene().getWindow();
                 if (taskView == null) {

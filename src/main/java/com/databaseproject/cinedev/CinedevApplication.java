@@ -2,10 +2,8 @@ package com.databaseproject.cinedev;
 
 import com.databaseproject.cinedev.presentation.PathViews;
 import com.databaseproject.cinedev.presentation.ViewSwitcher;
-import com.databaseproject.cinedev.stages.LoginPage;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
